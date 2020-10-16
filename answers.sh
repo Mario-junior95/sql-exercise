@@ -1,6 +1,6 @@
 #Creat table students
 
-CREATE TABLE "sudents" (
+CREATE TABLE "students" (
 	"ID"	INTEGER NOT NULL,
 	"Name"	TEXT NOT NULL UNIQUE,
 	"Age"	INTEGER,
@@ -14,7 +14,7 @@ INSERT INTO students (ID,Name,Age,Gender,Points) VALUES (1,"Alex",35,"Male",50);
 INSERT INTO students (ID,Name,Age,Gender,Points) VALUES (2,"Basma",21,"Female",70);
 INSERT INTO students (ID,Name,Age,Gender,Points) VALUES (3,"Elias",23,"Male",30);
 INSERT INTO students (ID,Name,Age,Gender,Points) VALUES (4,"Rana",33,"Female",40);
-INSERT INTO students (ID,Name,Age,Gender,Points) VALUES (5,"Tracy",29,"Female",90);
+INSERT INTO students (ID,Name,Age,Gender,Points) VALUES (5,"Layal",29,"Female",90);
 
 #1. Get all the names of students in the database 
 SELECT *
@@ -50,4 +50,28 @@ WHERE name="Alex";
 
 
 
- 
+#Creat a table graduates 
+
+CREATE TABLE "graduates" (
+	"ID"	INTEGER NOT NULL,
+	"Name"	TEXT NOT NULL UNIQUE,
+	"Age"	INTEGER,
+	"Gender"	TEXT,
+	"Points"	INTEGER,
+	"Graduation" TEXT,
+	PRIMARY KEY("ID" AUTOINCREMENT)
+);
+
+#1.Copy Layal's data from students to graduates
+INSERT INTO graduates (ID,Name,Age,Gender,Points)
+SELECT *,
+FROM students,
+WHERE Name = "Layal";
+
+#2.Add the graduation date previously mentioned to Layal's record in graduates
+INSERT INTO graduates (Graduation) VALUES ("08/09/2018");
+
+#3.Remove Layal's record from students
+DELETE FROM students 
+WHERE Name="Layal";
+
