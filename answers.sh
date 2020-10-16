@@ -17,7 +17,7 @@ INSERT INTO students (ID,Name,Age,Gender,Points) VALUES (4,"Rana",33,"Female",40
 INSERT INTO students (ID,Name,Age,Gender,Points) VALUES (5,"Layal",29,"Female",90);
 
 #1. Get all the names of students in the database 
-SELECT *
+SELECT Name
 FROM sudents;
 
 #2. Get all the data of students above 30 years old 
@@ -28,7 +28,7 @@ WHERE Age > 30;
 #3. Get the names of the females who are 30 years old
 SELECT Gender , age
 FROM students
-WHERE Gender="Female" and age > 30;
+WHERE Gender="Female" and age = 30;
 
 #4. Get the number of Points of Alex 
 SELECT Points
@@ -78,17 +78,39 @@ WHERE Name="Layal";
 #Joins
 #1.Produce a table that contains, for each employee, his/her name, company name, and company date.
 
-SELECT e.Name, c.Name, c.Date
-FROM employees 
-INNER JOIN companies ON e.Company=c.Name;
+SELECT e.Name,e.Company,Date 
+FROM employees as e JOIN companies as c on e.Company = c.Name;
 
 #2.Find the name of employees that work in companies made before 2000.
-SELECT e.Name, c.Name, c.Date
-FROM employees 
-INNER JOIN companies  ON e.Company=c.Name AND c.Date < 2000;
+SELECT employees.Name 
+FROM employees JOIN companies on Date<2000 AND employees.Company = companies.Name;
 
 #3.Find the name of company that has a graphic designer.
-SELECT c.Name
-FROM employees 
-INNER JOIN companies ON e.Company=c.Name AND e.Role="Graphic Designer";
+SELECT Company FROM employees WHERE Role like 'Graphic Designer'
+GROUP by Company HAVING employees.Company in(
+	                                         SELECT name 
+											 FROM companies);
 
+#Count & Filter
+#1.Find the person with the highest number of points in students
+SELECT Name , MAX(Points) as largestPoints
+FROM students;
+
+#2.Find the average of points in students
+SELECT AVG(Points) as averagePoints,
+FROM students;
+
+#3.Find the number of students that have 500 points
+SELECT count(Name) 
+FROM students 
+WHERE Points ="500";
+
+#4.Find the names of students that contains 's'
+SELECT Name 
+From students 
+WHERE Name="%s%";
+
+#5.Find all students based on the decreasing order of their points
+SELECT Name, Points 
+FROM students 
+order by Points;
