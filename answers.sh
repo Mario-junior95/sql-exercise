@@ -69,7 +69,8 @@ FROM students,
 WHERE Name = "Layal";
 
 #2.Add the graduation date previously mentioned to Layal's record in graduates
-INSERT INTO graduates (Graduation) VALUES ("08/09/2018");
+UPDATE graduates
+SET Graduation = "08/09/2018";
 
 #3.Remove Layal's record from students
 DELETE FROM students 
