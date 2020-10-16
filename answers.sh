@@ -75,3 +75,20 @@ INSERT INTO graduates (Graduation) VALUES ("08/09/2018");
 DELETE FROM students 
 WHERE Name="Layal";
 
+#Joins
+#1.Produce a table that contains, for each employee, his/her name, company name, and company date.
+
+SELECT e.Name, c.Name, c.Date
+FROM employees 
+INNER JOIN companies ON e.Company=c.Name;
+
+#2.Find the name of employees that work in companies made before 2000.
+SELECT e.Name, c.Name, c.Date
+FROM employees 
+INNER JOIN companies  ON e.Company=c.Name AND c.Date < 2000;
+
+#3.Find the name of company that has a graphic designer.
+SELECT c.Name
+FROM employees 
+INNER JOIN companies ON e.Company=c.Name AND e.Role="Graphic Designer";
+
