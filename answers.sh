@@ -114,4 +114,5 @@ WHERE Name="%s%";
 #5.Find all students based on the decreasing order of their points
 SELECT Name, Points 
 FROM students 
-order by Points;
+order by Points
+DESC;
